@@ -21,7 +21,7 @@ def add_request():
     if name and loc and priority:
         patient_queue.append((name, loc, priority))
         patient_records.append((name, loc, priority))
-        messagebox.showinfo("Request Added", f"✅ Request added for {name} at {loc}")
+        messagebox.showinfo("Request Added", f" Request added for {name} at {loc}")
         entry_name.delete(0, tk.END)
         entry_location.delete(0, tk.END)
         entry_priority.delete(0, tk.END)
@@ -30,7 +30,7 @@ def add_request():
 
 def assign_ambulance():
     if not patient_queue or not ambulances:
-        messagebox.showerror("Error", "❌ No requests or ambulances available")
+        messagebox.showerror("Error", " No requests or ambulances available")
         return
     
     critical_request = None
@@ -53,20 +53,20 @@ def assign_ambulance():
     hospital = hospital_db.get(location, "Nearest Government Hospital")
 
     messagebox.showinfo("Ambulance Assigned",
-                        f"🚑 {name} assigned to {patient}\n"
-                        f"📍 Location: {location} ({priority})\n"
-                        f"📏 Distance: {distance} km | ⚡ Speed: {speed} km/h\n"
-                        f"⏳ ETA: {eta} mins\n"
-                        f"🏥 Hospital: {hospital}")
+                        f" {name} assigned to {patient}\n"
+                        f" Location: {location} ({priority})\n"
+                        f" Distance: {distance} km |  Speed: {speed} km/h\n"
+                        f" ETA: {eta} mins\n"
+                        f" Hospital: {hospital}")
 
 def search_hospital():
     area = entry_search_hospital.get()
     if area:
         hospital = hospital_db.get(area)
         if hospital:
-            messagebox.showinfo("Hospital Found", f"🏥 Nearest hospital in {area}:\n{hospital}")
+            messagebox.showinfo("Hospital Found", f" Nearest hospital in {area}:\n{hospital}")
         else:
-            messagebox.showwarning("Not Found", "❌ No hospital found in this area.")
+            messagebox.showwarning("Not Found", " No hospital found in this area.")
     else:
         messagebox.showwarning("Input Error", "Please enter an area to search!")
 
@@ -76,9 +76,9 @@ def search_patient():
         found = [rec for rec in patient_records if rec[0].lower() == name.lower()]
         if found:
             info = "\n".join([f"Name: {r[0]}, Location: {r[1]}, Priority: {r[2]}" for r in found])
-            messagebox.showinfo("Patient Found", f"🔎 Patient Records:\n{info}")
+            messagebox.showinfo("Patient Found", f" Patient Records:\n{info}")
         else:
-            messagebox.showwarning("Not Found", "❌ No patient found in records.")
+            messagebox.showwarning("Not Found", " No patient found in records.")
     else:
         messagebox.showwarning("Input Error", "Please enter a patient name to search!")
 
@@ -101,14 +101,15 @@ entry_priority.pack()
 tk.Button(root, text="Add Request", command=add_request).pack(pady=5)
 tk.Button(root, text="Assign Ambulance", command=assign_ambulance).pack(pady=5)
 
-tk.Label(root, text="\n🔎 Search Hospital by Area:").pack()
+tk.Label(root, text="\n Search Hospital by Area:").pack()
 entry_search_hospital = tk.Entry(root)
 entry_search_hospital.pack()
 tk.Button(root, text="Search Hospital", command=search_hospital).pack(pady=5)
 
-tk.Label(root, text="\n🔎 Search Patient by Name:").pack()
+tk.Label(root, text="\n Search Patient by Name:").pack()
 entry_search_patient = tk.Entry(root)
 entry_search_patient.pack()
 tk.Button(root, text="Search Patient", command=search_patient).pack(pady=5)
 
 root.mainloop()
+
