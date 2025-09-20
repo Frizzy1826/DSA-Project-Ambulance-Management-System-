@@ -83,7 +83,7 @@ def search_patient():
         messagebox.showwarning("Input Error", "Please enter a patient name to search!")
 
 root = tk.Tk()
-root.title("Ambulance Management System")
+root.title("Sanjeevani Flow")
 root.geometry("420x500")
 
 tk.Label(root, text="Patient Name:").pack()
@@ -112,4 +112,3 @@ entry_search_patient.pack()
 tk.Button(root, text="Search Patient", command=search_patient).pack(pady=5)
 
 root.mainloop()
-
